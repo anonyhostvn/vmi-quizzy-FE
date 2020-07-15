@@ -1,28 +1,13 @@
 import React from 'react';
 import {MultipleChoiceWrapper} from './multiplechoice.style';
 import MultipleAnswer from "../MultipleAnswer";
+import SingleAnswer from "../SingleAnswer";
 
-const MultipleChoice = () => {
+const MultipleChoice = ({qid, mode, question, options, changeAns, recentAns}) => {
 
-    const question = 'Compilers, Editors software, and OS come under which type of software?'
-    const answer = [
-        {
-            description: 'System software',
-            key: 'A'
-        },
-        {
-            description: 'Passing the name property to all input[type="radio"] that are in the same Radio.Group. It is usually used to let the browser see your Radio.Group as a real "group" and keep the default behavior. For example, using left/right keyboard arrow to change your selection that in the same Radio.Group.',
-            key: 'B'
-        },
-        {
-            description: 'Scientific software',
-            key: 'C'
-        },
-        {
-            description: 'None of the above',
-            key: 'D'
-        }
-    ]
+    const _changeAns = (ans) => {
+        changeAns(qid,ans);
+    }
 
     return (
         <MultipleChoiceWrapper>
@@ -30,9 +15,11 @@ const MultipleChoice = () => {
                 {question}
             </div>
 
-            {/*<SingleAnswer options={answer}/>*/}
-
-            <MultipleAnswer options={answer}/>
+            {
+                mode === 'singleChoice' ?
+                    <SingleAnswer options={options} recentAns={recentAns} changeAns={_changeAns} />
+                    : <MultipleAnswer options={options} recentAns={recentAns} changeAns={_changeAns}/>
+            }
 
         </MultipleChoiceWrapper>
     );

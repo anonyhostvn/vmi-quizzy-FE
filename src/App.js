@@ -1,10 +1,15 @@
 import React from 'react';
-import MultipleChoice from "./components/MultipleChoice";
+import WorkingSpace from "./containers/WorkingSpace";
+import {Provider} from "react-redux";
+import {store} from "./stores/store";
 
 function App() {
+
     return (
         <div>
-            <MultipleChoice/>
+            <Provider store={store}>
+                <WorkingSpace/>
+            </Provider>
         </div>
     );
 }

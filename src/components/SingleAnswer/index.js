@@ -1,22 +1,20 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './singleAnswer.scss';
 import SingleAnswerOption from "./singleAnswer.option";
 
-const SingleAnswer = ({options}) => {
-
-    const [ans, setAns] = useState(null);
+const SingleAnswer = ({options, recentAns, changeAns}) => {
 
     const onSelectAns = (ansKey) => {
-        if (ansKey === ans) setAns(null);
-        else setAns(ansKey);
+        if (ansKey === recentAns) changeAns(null);
+        else changeAns(ansKey);
     }
 
     return (
         <div className="form">
             {
-                options.map(s => (
-                    <SingleAnswerOption desc={s.description} keyAns={s.key} checked={ans === s.key} onChoose={() => onSelectAns(s.key)}/>
-                ))
+                options.map((s, index) => {
+                    return <SingleAnswerOption key={index} desc={s.description} keyAns={s.key} checked={recentAns === s.key} onClick={() => onSelectAns(s.key)}/>;
+                })
             }
         </div>
     )

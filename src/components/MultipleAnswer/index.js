@@ -1,21 +1,26 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './singleAnswer.scss';
 import MultipleAnswerOption from "./multipleAnswer.option";
 
-const MultipleAnswer = ({options}) => {
-
-    const [ans, setAns] = useState([]);
+const MultipleAnswer = ({options, changeAns, recentAns}) => {
 
     const onSelectAns = (ansKey) => {
-        if (ans.find(s => s === ansKey)) setAns([...ans.filter(s => s !== ansKey)]);
-        else setAns([...ans, ansKey]);
+        if (recentAns) {
+            if (recentAns.find(s => s === ansKey)) changeAns([...recentAns.filter(s => s !== ansKey)]);
+            else changeAns([...recentAns, ansKey]);
+        } else changeAns([ansKey]);
     }
 
     return (
         <div className="form">
             {
                 options.map(s => (
-                    <MultipleAnswerOption desc={s.description} keyAns={s.key} checked={ans.includes(s.key)} onChoose={() => onSelectAns(s.key)}/>
+                    <MultipleAnswerOption
+                        desc={s.description}
+                        keyAns={s.key}
+                        checked={recentAns ? recentAns.includes(s.key) : false}
+                        onChoose={() => onSelectAns(s.key)}
+                    />
                 ))
             }
         </div>
