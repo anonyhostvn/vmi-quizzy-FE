@@ -1,5 +1,16 @@
 import styled from 'styled-components';
+import {Layout} from "antd";
 
-export const WorkingSpaceWrapper = styled.div`
+export const WorkingSpaceWrapper = styled(Layout)`
 
+  .overview-place {
+    position: fixed;
+    height: 100vh;
+    overflow: auto;
+    left: 0;
+    width: 200px;
+  }
+  
+  .question-space {
+  }
 `;

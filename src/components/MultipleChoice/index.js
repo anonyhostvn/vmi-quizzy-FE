@@ -3,16 +3,16 @@ import {MultipleChoiceWrapper} from './multiplechoice.style';
 import MultipleAnswer from "../MultipleAnswer";
 import SingleAnswer from "../SingleAnswer";
 
-const MultipleChoice = ({qid, mode, question, options, changeAns, recentAns}) => {
+const MultipleChoice = ({index, qid, mode, question, options, changeAns, recentAns}) => {
 
     const _changeAns = (ans) => {
         changeAns(qid,ans);
     }
 
     return (
-        <MultipleChoiceWrapper>
+        <MultipleChoiceWrapper id={`question-${index}`}>
             <div className={'question-area'}>
-                {question}
+                {index + 1}. {question}
             </div>
 
             {
