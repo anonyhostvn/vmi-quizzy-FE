@@ -1,16 +1,14 @@
 import React from 'react';
-import WorkingSpace from "./containers/WorkingSpace";
 import {Provider} from "react-redux";
 import {store} from "./stores/store";
+import QuizzyApp from "./containers/App";
 
 function App() {
 
     return (
-        <div>
-            <Provider store={store}>
-                <WorkingSpace/>
-            </Provider>
-        </div>
+        <Provider store={store}>
+            <QuizzyApp/>
+        </Provider>
     );
 }
 
