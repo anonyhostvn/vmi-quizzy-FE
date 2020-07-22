@@ -24,6 +24,7 @@ const store = createStore(
         ...reducers,
         router: connectRouter(history),
     }),
+    {},
     composeWithDevTools(applyMiddleware(...middleware))
 );
 epicMiddleware.run(rootEpics);

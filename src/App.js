@@ -1,13 +1,13 @@
 import React from 'react';
 import {Provider} from "react-redux";
-import {store} from "./stores/store";
-import QuizzyApp from "./containers/App";
+import {store, history} from "./stores/store";
+import MainRouter from "./routers/main.router";
 
 function App() {
 
     return (
         <Provider store={store}>
-            <QuizzyApp/>
+            <MainRouter history={history} />
         </Provider>
     );
 }
