@@ -11,11 +11,12 @@ const QuizzyApp = () => {
     const LayoutHeaderStyle = {
         position: 'fixed',
         width: '100%',
-        zIndex: 1000
+        zIndex: 1000,
     };
 
     const ContentStyle = {
-        marginTop: 64
+        marginTop: 64,
+        height: "calc(100vh - 64px)"
     }
 
     return (
@@ -32,7 +33,7 @@ const QuizzyApp = () => {
                 <QuizzyAppRouter/>
             </Layout.Content>
 
-            <Layout.Footer style={{textAlign: 'center'}}> Make by Anonyhostvn </Layout.Footer>
+            <Layout.Footer style={{textAlign: 'center', height: 100}}> Make by Anonyhostvn </Layout.Footer>
         </AppWrapper>
     )
 }
