@@ -6,7 +6,6 @@ export const WorkingSpaceWrapper = styled(Layout)`
   .overview-place {
     position: fixed;
     height: 100vh;
-    overflow: auto;
     left: 0;
     width: 200px;
   }

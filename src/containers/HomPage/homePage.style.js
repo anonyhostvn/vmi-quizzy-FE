@@ -13,6 +13,6 @@ export const HomePageWrapper = styled.div`
   }
   
   #header-home-page {
-    animation: 3s ${headerAnimation}
+    animation: 5s ${headerAnimation}
   }
 `;

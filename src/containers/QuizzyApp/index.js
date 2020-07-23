@@ -1,8 +1,6 @@
 import React from 'react';
 import {AppWrapper} from "./app.style";
-import {Layout, Menu} from "antd";
-import {Link} from "react-router-dom";
-import {routerDict} from "../../routers/app.router.config";
+import {Layout} from "antd";
 import QuizzyAppRouter from "../../routers/app.router";
 import {connect} from "react-redux";
 
@@ -16,17 +14,16 @@ const QuizzyApp = () => {
 
     const ContentStyle = {
         marginTop: 64,
-        height: "calc(100vh - 64px)"
     }
 
     return (
         <AppWrapper>
             <Layout.Header style={LayoutHeaderStyle}>
                 <div className="logo" />
-                <Menu theme="dark" mode="horizontal">
-                    <Menu.Item key="1"> <Link to={routerDict.home}> Trang chủ </Link> </Menu.Item>
-                    <Menu.Item key="2"> <Link to={routerDict.work}> Tổng hợp bài trắc nghiệm </Link> </Menu.Item>
-                </Menu>
+                {/*<Menu theme="dark" mode="horizontal">*/}
+                {/*    <Menu.Item key="1"> <Link to={routerDict.home}> Trang chủ </Link> </Menu.Item>*/}
+                {/*    <Menu.Item key="2"> <Link to={routerDict.work}> Tổng hợp bài trắc nghiệm </Link> </Menu.Item>*/}
+                {/*</Menu>*/}
             </Layout.Header>
 
             <Layout.Content style={ContentStyle}>
