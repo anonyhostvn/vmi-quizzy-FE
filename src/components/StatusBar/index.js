@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, Space } from "antd";
+import {Menu, Space} from "antd";
 import {Link} from "react-scroll";
 
 
@@ -38,14 +38,14 @@ const StatusBar = ({listQuestion}) => {
                                       offset={-70}
                                       duration={500}
                                 >
-                                        <span style={checkingQuestionIsDone(singleQuestion) ? doneText : normalText}>  Câu {index + 1} </span>
+                                        <span
+                                            style={checkingQuestionIsDone(singleQuestion) ? doneText : normalText}>  Câu {index + 1} </span>
                                 </Link>
                             </Space>
                         </Menu.Item>
                     )
                 )
             }
-
         </Menu>
     );
 };

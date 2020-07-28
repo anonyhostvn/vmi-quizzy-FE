@@ -1,23 +1,27 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {WorkingSpaceWrapper} from "./workingSpace.style";
 import MultipleChoice from "../../components/MultipleChoice";
 import {connect} from 'react-redux';
 import {WorkingSpaceReducer} from "../../stores/WorkingSpace/workingSpace.reducers";
 import StatusBar from "../../components/StatusBar";
-import {Button, Layout, Spin} from "antd";
+import {Layout, Spin} from "antd";
 import Spinner from "../../components/Spiner";
+import ResultBox from "../../components/ResultBox";
 
-const WorkingSpace = ({listQuestion, updateQuestionAnswer, requestGetTest, listAnswer, requestSubmitTest, isLoading}) => {
-
-    const [marginLeft, setMarginLeft] = useState(200);
+const WorkingSpace = (
+    {
+        listQuestion,
+        updateQuestionAnswer,
+        requestGetTest,
+        listAnswer,
+        requestSubmitTest,
+        isLoading, testResult, startTime, endTime, hasTestResult
+    }
+) => {
 
     useEffect(() => {
         requestGetTest();
     }, [requestGetTest]);
-
-    const handleWhenCollapsed = (collapsed, type) => {
-        collapsed ? setMarginLeft(80) : setMarginLeft(200);
-    }
 
     const changeAns = (qid, answer) => {
         updateQuestionAnswer({qid, answer})
@@ -29,43 +33,51 @@ const WorkingSpace = ({listQuestion, updateQuestionAnswer, requestGetTest, listA
 
     return (
         <WorkingSpaceWrapper>
-            <Layout.Sider className={'overview-place'} collapsible={true} onCollapse={handleWhenCollapsed}>
-                <Button type={"primary"} block={true} onClick={handleSubmitTest}> Submit </Button>
+            <Layout.Sider className={'overview-place'} collapsed={true}>
 
                 <StatusBar listQuestion={listQuestion}/>
 
             </Layout.Sider>
 
-            <Layout.Content className={'question-space'} style={{marginLeft}}>
-                <Spin spinning={isLoading} indicator={<Spinner/>}>
-                    {
-                        listQuestion.map(
-                            (singleQuestion, index) => {
-                                return (
-                                    <MultipleChoice
-                                        key={index}
-                                        index={index}
-                                        qid={singleQuestion.qid}
-                                        mode={'multipleChoice'}
-                                        question={singleQuestion.question}
-                                        options={singleQuestion.options}
-                                        changeAns={changeAns}
-                                        recentAns={singleQuestion.answer}
-                                    />
-                                )
-                            }
-                        )
-                    }
-                </Spin>
+            <Layout.Content className={'question-space'} style={{marginLeft: 80}}>
+                <div className={'list-question'}>
+
+                    <Spin spinning={isLoading} indicator={<Spinner/>}>
+                        {
+                            listQuestion.map(
+                                (singleQuestion, index) => {
+                                    return (
+                                        <MultipleChoice
+                                            key={index}
+                                            index={index}
+                                            qid={singleQuestion.qid}
+                                            mode={'multipleChoice'}
+                                            question={singleQuestion.question}
+                                            options={singleQuestion.options}
+                                            changeAns={changeAns}
+                                            recentAns={singleQuestion.answer}
+                                        />
+                                    )
+                                }
+                            )
+                        }
+                    </Spin>
+                </div>
+
+                <div className={'result-space'}>
+                    <ResultBox result={testResult} startTime={startTime} endTime={endTime} handleSubmitTest={handleSubmitTest} requestGetTest={requestGetTest} hasTestResult={hasTestResult}/>
+                </div>
             </Layout.Content>
         </WorkingSpaceWrapper>
     )
 };
 
-const mapStateToProps = ({WorkingSpaceReducer: {listQuestion, listAnswer, isLoading}}) => ({
+const mapStateToProps = ({WorkingSpaceReducer: {listQuestion, listAnswer, isLoading, testResult, startTime, endTime, hasTestResult}}) => ({
     listQuestion,
     listAnswer,
-    isLoading
+    isLoading,
+    testResult,
+    startTime, endTime, hasTestResult
 });
 
 export default connect(

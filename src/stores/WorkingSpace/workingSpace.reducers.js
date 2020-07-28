@@ -9,6 +9,8 @@ export const WorkingSpaceReducer = autodux({
     initial: {
         listQuestion: listQuestion,
         listAnswer: [],
+        testResult: {},
+        hasTestResult: false,
         startTime: 0,
         endTime: 0,
         isLoading: false
@@ -27,7 +29,10 @@ export const WorkingSpaceReducer = autodux({
         requestGetTest: (state, payload) => {
             return {
                 ...state,
-                isLoading: true
+                isLoading: true,
+                testResult: {},
+                listQuestion: [],
+                hasTestResult: false
             }
         },
         successRequestGetTest: (state, {testQuiz: {end_time, start_time, questions}}) => {
@@ -53,10 +58,12 @@ export const WorkingSpaceReducer = autodux({
                 isLoading: true
             }
         },
-        successRequestSubmitTest: (state, payload) => {
+        successRequestSubmitTest: (state, {testResult}) => {
             return {
                 ...state,
-                isLoading: false
+                testResult,
+                isLoading: false,
+                hasTestResult: true
             }
         },
         errorRequestSubmitTest: (state, payload) => {

@@ -34,8 +34,8 @@ const requestSubmitTestEpic = action$ => action$.pipe(
     mergeMap(
         ({payload}) => observableSubmitTest(payload).pipe(
             mergeMap(
-                data => of(
-                    successRequestSubmitTest({data})
+                ({data}) => of(
+                    successRequestSubmitTest({testResult: data})
                 )
             ),
             catchError(

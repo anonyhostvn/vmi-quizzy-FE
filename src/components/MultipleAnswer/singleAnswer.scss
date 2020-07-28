@@ -1,4 +1,4 @@
-.inputGroup {
+.inputGroupMultiple {
   background-color: #fff;
   display: block;
   margin: 10px 0;
@@ -109,4 +109,12 @@ html {
 code {
   background-color: #9AA3AC;
   padding: 0 8px;
+}
+
+.inputGroupMultipleWrong {
+  label {
+    &:before {
+      background-color: #f44336;
+    }
+  }
 }
