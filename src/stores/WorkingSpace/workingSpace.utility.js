@@ -27,3 +27,23 @@ export const initAnswer = (questions) => {
         choices: []
     }))
 }
+
+export const transformStatusAnswer = (userAnswer, serverAnswer) => {
+    return serverAnswer.map(
+        (singleServerAnswer, index) => {
+            const respondingUserAnswer = userAnswer[index];
+
+            return singleServerAnswer.choices.map(
+                singleChoices => {
+                    const status = singleChoices.is_correct ?
+                        respondingUserAnswer.choices.includes(singleChoices.id) ? 'right' : 'miss'
+                        : respondingUserAnswer.choices.includes(singleChoices.id) ? 'wrong' : 'nothing';
+                    return {
+                        ...singleChoices,
+                        status
+                    }
+                }
+            )
+        }
+    );
+};

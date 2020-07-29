@@ -118,3 +118,11 @@ code {
     }
   }
 }
+
+.inputGroupMultipleMiss {
+  label {
+    &:before {
+      background-color: #ffee58;
+    }
+  }
+}

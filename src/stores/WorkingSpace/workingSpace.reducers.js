@@ -1,7 +1,7 @@
 import autodux from "autodux";
 import {updateAnswerForListQuestion} from "./workingSpace.utils";
 import {listQuestion} from "../../mockData/mock";
-import {initAnswer, reformatReceiveData, updateAnswer} from "./workingSpace.utility";
+import {initAnswer, reformatReceiveData, transformStatusAnswer, updateAnswer} from "./workingSpace.utility";
 
 
 export const WorkingSpaceReducer = autodux({
@@ -59,9 +59,13 @@ export const WorkingSpaceReducer = autodux({
             }
         },
         successRequestSubmitTest: (state, {testResult}) => {
+            const {listAnswer} = state;
+            const {data} = testResult;
+
             return {
                 ...state,
                 testResult,
+                resultStatus: transformStatusAnswer(listAnswer, data),
                 isLoading: false,
                 hasTestResult: true
             }

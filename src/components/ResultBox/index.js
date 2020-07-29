@@ -65,7 +65,7 @@ const ResultBox = (
                         const ansClass = singleResult.is_correct ? 'ant-card-body-custom-right-ans' : 'ant-card-body-custom-wrong-ans';
 
                         return (
-                            <Col {...responsiveColListQues}>
+                            <Col key={index} {...responsiveColListQues}>
                                 <Link to={`question-${index}`}
                                       spy={true}
                                       smooth={true}
@@ -81,7 +81,7 @@ const ResultBox = (
                     }) : listAnswer.map((singleAnswer, index) => {
                         const cardStyle = singleAnswer.choices.length > 0 ? 'ant-card-body-custom-selected' : null;
                         return (
-                            <Col {...responsiveColListQues}>
+                            <Col key={index} {...responsiveColListQues}>
                                 <Link to={`question-${index}`}
                                       spy={true}
                                       smooth={true}

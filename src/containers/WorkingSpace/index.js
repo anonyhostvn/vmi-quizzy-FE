@@ -14,7 +14,7 @@ const WorkingSpace = (
         requestGetTest,
         listAnswer,
         requestSubmitTest,
-        isLoading, testResult, startTime, endTime, hasTestResult
+        isLoading, testResult, startTime, endTime, hasTestResult, resultStatus
     }
 ) => {
 
@@ -47,6 +47,8 @@ const WorkingSpace = (
                                 (singleQuestion, index) => {
                                     return (
                                         <MultipleChoice
+                                            hasTestResult={hasTestResult}
+                                            resultStatus={hasTestResult ? resultStatus[index] : {}}
                                             key={index}
                                             index={index}
                                             qid={singleQuestion.qid}
@@ -79,12 +81,12 @@ const WorkingSpace = (
     )
 };
 
-const mapStateToProps = ({WorkingSpaceReducer: {listQuestion, listAnswer, isLoading, testResult, startTime, endTime, hasTestResult}}) => ({
+const mapStateToProps = ({WorkingSpaceReducer: {listQuestion, listAnswer, isLoading, testResult, startTime, endTime, hasTestResult, resultStatus}}) => ({
     listQuestion,
     listAnswer,
     isLoading,
     testResult,
-    startTime, endTime, hasTestResult
+    startTime, endTime, hasTestResult, resultStatus
 });
 
 export default connect(

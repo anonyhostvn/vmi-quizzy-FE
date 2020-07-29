@@ -2,7 +2,19 @@ import React from 'react';
 import './singleAnswer.scss';
 import MultipleAnswerOption from "./multipleAnswer.option";
 
-const MultipleAnswer = ({options, changeAns, recentAns}) => {
+const mappingStatusToClassStyle = {
+    "right": null,
+    "miss" : "inputGroupMultipleMiss",
+    "wrong": "inputGroupMultipleWrong",
+    "none": null
+}
+
+const MultipleAnswer = (
+    {
+        options, changeAns, recentAns,
+        hasTestResult, resultStatus
+    }
+) => {
 
     const onSelectAns = (ansKey) => {
         if (recentAns) {
@@ -14,14 +26,24 @@ const MultipleAnswer = ({options, changeAns, recentAns}) => {
     return (
         <div className="form">
             {
-                options.map(s => (
-                    <MultipleAnswerOption
-                        desc={s.description}
-                        keyAns={s.key}
-                        checked={recentAns ? recentAns.includes(s.key) : false}
-                        onChoose={() => onSelectAns(s.key)}
-                    />
-                ))
+                options.map((s, index) => {
+                    const correspondStatus = hasTestResult ? resultStatus[index]['status'] : "none";
+                    const checkedOrNotWhenHasResult = ['miss', 'right', 'wrong'].includes(correspondStatus);
+                    const checkedOtNotWhenNotHasResult = recentAns ? recentAns.includes(s.key) : false;
+
+                    const classStyle = mappingStatusToClassStyle[correspondStatus];
+
+                    return (
+                        <MultipleAnswerOption
+                            key={index}
+                            desc={s.description}
+                            keyAns={s.key}
+                            classStyle={classStyle}
+                            checked={hasTestResult ? checkedOrNotWhenHasResult : checkedOtNotWhenNotHasResult}
+                            onChoose={() => onSelectAns(s.key)}
+                        />
+                    )
+                })
             }
         </div>
     )
