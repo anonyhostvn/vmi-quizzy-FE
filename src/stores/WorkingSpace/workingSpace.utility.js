@@ -13,11 +13,11 @@ export const reformatReceiveData = (questions) => questions.map(
 
 export const updateAnswer = (recentListAnswer, qid, ans) => {
     return [
-        ...recentListAnswer.filter(s => s.question !== qid),
-        {
+        ...recentListAnswer.map(s => s.question !== qid ? s : {
+            ...s,
             question: qid,
             choices: ans
-        }
+        })
     ]
 };
 

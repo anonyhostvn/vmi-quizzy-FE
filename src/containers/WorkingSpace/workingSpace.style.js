@@ -36,4 +36,7 @@ export const WorkingSpaceWrapper = styled(Layout)`
   .result-space {
     width: 30%;
   }
+  
+  
+ 
 `;

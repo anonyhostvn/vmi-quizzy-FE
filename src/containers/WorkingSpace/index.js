@@ -3,7 +3,6 @@ import {WorkingSpaceWrapper} from "./workingSpace.style";
 import MultipleChoice from "../../components/MultipleChoice";
 import {connect} from 'react-redux';
 import {WorkingSpaceReducer} from "../../stores/WorkingSpace/workingSpace.reducers";
-import StatusBar from "../../components/StatusBar";
 import {Layout, Spin} from "antd";
 import Spinner from "../../components/Spiner";
 import ResultBox from "../../components/ResultBox";
@@ -35,7 +34,7 @@ const WorkingSpace = (
         <WorkingSpaceWrapper>
             <Layout.Sider className={'overview-place'} collapsed={true}>
 
-                <StatusBar listQuestion={listQuestion}/>
+                {/*<StatusBar listQuestion={listQuestion}/>*/}
 
             </Layout.Sider>
 
@@ -65,7 +64,15 @@ const WorkingSpace = (
                 </div>
 
                 <div className={'result-space'}>
-                    <ResultBox result={testResult} startTime={startTime} endTime={endTime} handleSubmitTest={handleSubmitTest} requestGetTest={requestGetTest} hasTestResult={hasTestResult}/>
+                    <ResultBox
+                        listAnswer={listAnswer}
+                        result={testResult}
+                        startTime={startTime}
+                        endTime={endTime}
+                        handleSubmitTest={handleSubmitTest}
+                        requestGetTest={requestGetTest}
+                        hasTestResult={hasTestResult}
+                    />
                 </div>
             </Layout.Content>
         </WorkingSpaceWrapper>
