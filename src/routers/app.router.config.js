@@ -1,4 +1,4 @@
 export const routerDict = {
     home: '/quizzy',
-    work: '/quizzy/work'
+    a1test: '/quizzy/a1-test'
 };

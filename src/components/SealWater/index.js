@@ -5,7 +5,7 @@ const SealWater = () => {
     return (
         <div className="box-canvas">
 
-            <div style={{padding: 20, fontSize: 30}} id={'header-home-page'}>
+            <div style={{padding: 20, fontSize: 30}} className={'header-home-page'}>
                 <h1> Hệ thống làm bài thi trắc nghiệm online  </h1>
             </div>
 

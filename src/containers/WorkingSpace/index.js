@@ -1,11 +1,12 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {WorkingSpaceWrapper} from "./workingSpace.style";
 import MultipleChoice from "../../components/MultipleChoice";
 import {connect} from 'react-redux';
 import {WorkingSpaceReducer} from "../../stores/WorkingSpace/workingSpace.reducers";
-import {Layout, Spin} from "antd";
+import {Layout, Modal, Spin} from "antd";
 import Spinner from "../../components/Spiner";
 import ResultBox from "../../components/ResultBox";
+import {AccountBookOutlined} from '@ant-design/icons';
 
 const WorkingSpace = (
     {
@@ -18,9 +19,24 @@ const WorkingSpace = (
     }
 ) => {
 
-    useEffect(() => {
-        requestGetTest();
+    const modalProps = useMemo(() => {
+        return {
+            title: 'Chào mừng bạn đến với bài thi bằng lái xe A1',
+            icon: <AccountBookOutlined/>,
+            content: <div>
+                Chúc bạn làm bài thi thật tốt nhé !
+            </div>,
+            width: 800,
+            onOk: () => {
+                requestGetTest();
+                Modal.destroyAll();
+            }
+        }
     }, [requestGetTest]);
+
+    useEffect(() => {
+        Modal.success({...modalProps});
+    }, [modalProps]);
 
     const changeAns = (qid, answer) => {
         updateQuestionAnswer({qid, answer})
@@ -34,7 +50,13 @@ const WorkingSpace = (
         <WorkingSpaceWrapper>
             <Layout.Sider className={'overview-place'} collapsed={true}>
 
-                {/*<StatusBar listQuestion={listQuestion}/>*/}
+                {/*<Menu theme={'dark'}>*/}
+                {/*    <Menu.Item icon={<HomeOutlined/>}>*/}
+                {/*        <Link to={routerDict.home}>*/}
+                {/*            Home*/}
+                {/*        </Link>*/}
+                {/*    </Menu.Item>*/}
+                {/*</Menu>*/}
 
             </Layout.Sider>
 

@@ -1,13 +1,11 @@
 import autodux from "autodux";
 import {updateAnswerForListQuestion} from "./workingSpace.utils";
-import {listQuestion} from "../../mockData/mock";
 import {initAnswer, reformatReceiveData, transformStatusAnswer, updateAnswer} from "./workingSpace.utility";
-
 
 export const WorkingSpaceReducer = autodux({
     slice: 'WorkingSpaceReducer',
     initial: {
-        listQuestion: listQuestion,
+        listQuestion: [],
         listAnswer: [],
         testResult: {},
         hasTestResult: false,

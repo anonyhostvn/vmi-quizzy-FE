@@ -9,7 +9,7 @@ const QuizzyAppRouter = () => {
         <div>
             <Route key={routerDict.home} path={routerDict.home} exact={true} component={HomePage}/>
 
-            <Route key={routerDict.work} path={routerDict.work} exact={true} component={WorkingSpace}/>
+            <Route key={routerDict.a1test} path={routerDict.a1test} exact={true} component={WorkingSpace}/>
         </div>
     )
 }

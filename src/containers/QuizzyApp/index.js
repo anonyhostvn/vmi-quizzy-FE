@@ -1,8 +1,12 @@
 import React from 'react';
 import {AppWrapper} from "./app.style";
-import {Layout} from "antd";
+import {Layout, Space} from "antd";
 import QuizzyAppRouter from "../../routers/app.router";
 import {connect} from "react-redux";
+import AppFooter from "../../components/AppFooter";
+import {HomeOutlined} from '@ant-design/icons';
+import {Link} from "react-router-dom";
+import {routerDict} from "../../routers/app.router.config";
 
 const QuizzyApp = () => {
 
@@ -14,23 +18,29 @@ const QuizzyApp = () => {
 
     const ContentStyle = {
         marginTop: 64,
+        minHeight: '80vh'
     }
 
     return (
         <AppWrapper>
             <Layout.Header style={LayoutHeaderStyle}>
-                <div className="logo" />
-                {/*<Menu theme="dark" mode="horizontal">*/}
-                {/*    <Menu.Item key="1"> <Link to={routerDict.home}> Trang chủ </Link> </Menu.Item>*/}
-                {/*    <Menu.Item key="2"> <Link to={routerDict.work}> Tổng hợp bài trắc nghiệm </Link> </Menu.Item>*/}
-                {/*</Menu>*/}
+                <div className="logo">
+                    <Link to={routerDict.home}>
+                        <Space>
+                            <HomeOutlined/>
+                            <span className={'.text'}> Quizzy Test </span>
+                        </Space>
+                    </Link>
+                </div>
             </Layout.Header>
 
             <Layout.Content style={ContentStyle}>
                 <QuizzyAppRouter/>
             </Layout.Content>
 
-            <Layout.Footer style={{textAlign: 'center', height: 100}}> Make by Anonyhostvn </Layout.Footer>
+            <Layout.Footer style={{padding: 0}}>
+                <AppFooter/>
+            </Layout.Footer>
         </AppWrapper>
     )
 }
