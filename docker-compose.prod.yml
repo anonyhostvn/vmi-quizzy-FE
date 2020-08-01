@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  dala-customer-webapp:
+    container_name: quizzy-webapp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+    - '81:81'
