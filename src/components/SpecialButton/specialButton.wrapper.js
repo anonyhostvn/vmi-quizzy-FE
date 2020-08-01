@@ -35,13 +35,13 @@ export const SpecialButtonWrapper = styled.div`
   -webkit-perspective: 1000;
   -webkit-backface-visibility: hidden;
   -webkit-transform:translate3d(0,0,0);
-  color: #ffffff;
+  color: #000000;
   text-decoration: none;
   text-transform: uppercase;
   font-family: 'Raleway', sans-serif;
   font-weight: 500;
   font-size: 1.2em;
-  border: 2px solid #ffffff;
+  border: 2px solid #000000;
   border-radius: 4px;
   padding: 20px 60px 20px 55px;
   transition: 0.3s ease-in-out;
@@ -61,6 +61,7 @@ export const SpecialButtonWrapper = styled.div`
     border: 2px solid #ffffff;
     border-radius: 50px;
     background-color: #ffffff;
+    color: #ffffff;
 
     &>span {
       opacity: 1;
